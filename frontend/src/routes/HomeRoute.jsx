@@ -6,10 +6,10 @@ import PhotoList from 'components/PhotoList';
 import { useFavContext } from 'components/FavContext';
 
 const HomeRoute = (props) => {
-  const { handleFav } = useFavContext();
+  const { favorites, handleFav } = useFavContext();
   return (
     <div className="home-route">
-      <TopNavigation topics={props.topics}/>
+      <TopNavigation topics={props.topics} favorites={favorites}/>
       <PhotoList photos={props.photos} />
     </div>
   );
