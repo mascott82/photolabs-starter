@@ -4,6 +4,7 @@ import PhotoListItem from './components/PhotoListItem';
 import './App.scss';
 import PhotoList from 'components/PhotoList';
 import TopicList from 'components/TopicList';
+import TopNavigation from 'components/TopNavigationBar';
 
 // const sampleDataForPhotoListItem = {
 //   id: "1",
@@ -25,6 +26,7 @@ const App = () => {
       {/* {photos.map((photo, index) => (
         <PhotoListItem key={photo.id + index} photo={photo}/>
       ))} */}
+      <TopNavigation />
       <PhotoList />
     </div>
   )
