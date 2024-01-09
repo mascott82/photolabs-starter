@@ -8,7 +8,7 @@ const PhotoListItem = (props) => {
   const { handleFav } = useFavContext()
 
   const handleClick = () => {
-    props.displayModal(true)
+    props.setDisplayModal(true)
   }
 
   return (
