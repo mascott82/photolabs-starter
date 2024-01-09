@@ -5,9 +5,9 @@ import closeSymbol from '../assets/closeSymbol.svg';
 
 const PhotoDetailsModal = (props) => {
   useEffect(() => {
-    console.log('Single Photo Detail: ', props.singlePhotoDetail)
+    props.singlePhotoDetail && console.log('Single Photo Detail: ', props.singlePhotoDetail)
   }, [props.singlePhotoDetail])
-  
+
   const closeModal = () => {
     props.setDisplayModal(false)
   }
