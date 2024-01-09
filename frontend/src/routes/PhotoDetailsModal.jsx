@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from 'react'
 
 import '../styles/PhotoDetailsModal.scss'
-import closeSymbol from '../assets/closeSymbol.svg';
+import closeSymbol from '../assets/closeSymbol.svg'
+import PhotoList from 'components/PhotoList'
 
 const PhotoDetailsModal = (props) => {
   useEffect(() => {
@@ -16,8 +17,23 @@ const PhotoDetailsModal = (props) => {
       <button className="photo-details-modal__close-button" onClick={closeModal}>
         <img src={closeSymbol} alt="close symbol"/>
       </button>
+      <div className="photo-details-modal__image">
+        <img src={props.singlePhotoDetail.urls.full} alt="photo detail" />
+        <div className="photo-details-modal__header">
+          <div className="photo-list__user-info">
+            <div className="photo-list__user-profile-info">
+              <img className="photo-list__user-profile" src={props.singlePhotoDetail.user.profile} alt={`Profile of ${props.singlePhotoDetail.user.name}`} />
+              <div>{props.singlePhotoDetail.user.name}</div>
+            </div>
+            <div className="photo-list__user-location">{`${props.singlePhotoDetail.location.city}, ${props.singlePhotoDetail.location.country}`}</div>
+          </div>
+        </div>
+      </div>
+      <div className='photo-details-modal__images'>
+        <h3>Similar Photos</h3>
+      </div>
     </div>
   )
-};
+}
 
-export default PhotoDetailsModal;
+export default PhotoDetailsModal
