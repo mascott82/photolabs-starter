@@ -10,11 +10,23 @@ import PhotoDetailsModal from 'routes/PhotoDetailsModal';
 // Note: Rendering a single component to build components in isolation
 const App = () => {
   const [displayModal, setDisplayModal] = useState(false)
+  const [singlePhotoDetail, setSinglePhotoDetail] = useState(null)
+
+  const openModal = (photo) => {
+    setSinglePhotoDetail(photo)
+    setDisplayModal(true)
+  }
   return (
     <div className="App">
       <FavProvider>
-        <HomeRoute topics={topics} photos={photos} setDisplayModal={setDisplayModal}/>
-        {displayModal && <PhotoDetailsModal setDisplayModal={setDisplayModal}/>}
+        <HomeRoute topics={topics} photos={photos} setDisplayModal={setDisplayModal} openModal={openModal} />
+        {displayModal && (
+          <PhotoDetailsModal 
+            setDisplayModal={setDisplayModal} 
+            displayModal={displayModal}
+            singlePhotoDetail={singlePhotoDetail}
+            />
+        )}
       </FavProvider>
     </div>
   )

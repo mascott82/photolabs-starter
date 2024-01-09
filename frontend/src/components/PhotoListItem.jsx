@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import "../styles/PhotoListItem.scss";
 import PhotoFavButton from "./PhotoFavButton";
@@ -6,18 +6,15 @@ import { useFavContext } from "./FavContext";
 
 const PhotoListItem = (props) => {
   const { handleFav } = useFavContext()
-  const [selectedPhoto, setSelectedPhoto] = useState(null)
 
-  const openModal = (photo) => {
-    setSelectedPhoto(photo)
-    props.setDisplayModal(true)
-    console.log(photo)
+  const handlePhotoClick = () => {
+    props.openModal(props.photo)
   }
 
   return (
     <div className="photo-list__item">
       <PhotoFavButton handleFav={handleFav} photoId={props.photo.id}/>
-      <img className="photo-list__image" src = {props.photo.urls.regular} alt={`Photo by ${props.photo.user.name}`}  onClick={() => openModal(props.photo)}/>
+      <img className="photo-list__image" src = {props.photo.urls.regular} alt={`Photo by ${props.photo.user.name}`}  onClick={handlePhotoClick}/>
       <div className="photo-list__user-details">
         <div className="photo-list__user-info">
           <div className="photo-list__user-profile-info">

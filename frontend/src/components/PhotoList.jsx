@@ -10,7 +10,7 @@ const PhotoList = (props) => {
   return (
     <ul className="photo-list">
       {props.photos.map((photo, index) => (
-        <PhotoListItem key={ photo.id + index } photo={ photo } handleFav={handleFav} setDisplayModal={props.setDisplayModal}/> 
+        <PhotoListItem key={ photo.id + index } photo={ photo } handleFav={handleFav} setDisplayModal={props.setDisplayModal} openModal={props.openModal}/> 
       ))}
     </ul>
   );
