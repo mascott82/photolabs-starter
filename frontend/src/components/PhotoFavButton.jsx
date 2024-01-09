@@ -8,7 +8,7 @@ function PhotoFavButton(props) {
 
   const handleIconClick = () => {
     setIsFavorited(prevIsFavorited => !prevIsFavorited)
-    props.handleFav.favorites.push(props.photoId)
+    props.handleFav(props.photoId)
   }
 
   return (
