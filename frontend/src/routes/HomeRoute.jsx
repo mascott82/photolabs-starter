@@ -9,7 +9,7 @@ const HomeRoute = (props) => {
   const { favorites, handleFav } = useFavContext();
   return (
     <div className="home-route">
-      <TopNavigation topics={props.topics} favorites={favorites}/>
+      <TopNavigation topics={props.topics} favoriteExists={favorites.length > 0}/>
       <PhotoList photos={props.photos} />
     </div>
   );
