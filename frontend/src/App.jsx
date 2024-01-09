@@ -14,7 +14,7 @@ const App = () => {
     <div className="App">
       <FavProvider>
         <HomeRoute topics={topics} photos={photos} setDisplayModal={setDisplayModal}/>
-        {displayModal && <PhotoDetailsModal />}
+        {displayModal && <PhotoDetailsModal setDisplayModal={setDisplayModal}/>}
       </FavProvider>
     </div>
   )
