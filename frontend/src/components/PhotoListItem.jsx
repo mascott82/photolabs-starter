@@ -6,10 +6,15 @@ import { useFavContext } from "./FavContext";
 
 const PhotoListItem = (props) => {
   const { handleFav } = useFavContext()
+
+  const handleClick = () => {
+    props.displayModal(true)
+  }
+
   return (
     <div className="photo-list__item">
       <PhotoFavButton handleFav={handleFav} photoId={props.photo.id}/>
-      <img className="photo-list__image" src = {props.photo.urls.regular} alt={`Photo by ${props.photo.user.name}`}/>
+      <img className="photo-list__image" src = {props.photo.urls.regular} alt={`Photo by ${props.photo.user.name}`}  onClick={handleClick}/>
       <div className="photo-list__user-details">
         <div className="photo-list__user-info">
           <div className="photo-list__user-profile-info">

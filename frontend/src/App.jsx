@@ -1,9 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import PhotoListItem from './components/PhotoListItem';
 import './App.scss';
-import PhotoList from 'components/PhotoList';
-import TopicList from 'components/TopicList';
 import HomeRoute from 'routes/HomeRoute';
 import topics from 'mocks/topics';
 import photos from 'mocks/photos';
@@ -12,11 +9,12 @@ import PhotoDetailsModal from 'routes/PhotoDetailsModal';
 
 // Note: Rendering a single component to build components in isolation
 const App = () => {
+  const [displayModal, setDisplayModal] = useState(false)
   return (
     <div className="App">
       <FavProvider>
-        <HomeRoute topics={topics} photos={photos}/>
-        <PhotoDetailsModal />
+        <HomeRoute topics={topics} photos={photos} displayModal={setDisplayModal}/>
+        {displayModal && <PhotoDetailsModal />}
       </FavProvider>
     </div>
   )
