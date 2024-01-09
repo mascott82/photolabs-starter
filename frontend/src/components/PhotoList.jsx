@@ -5,6 +5,7 @@ import PhotoListItem from "./PhotoListItem";
 import { useFavContext } from "./FavContext";
 
 const PhotoList = (props) => {
+  console.log(props.photos)
   const { handleFav } = useFavContext();
 
   return (
