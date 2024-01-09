@@ -1,14 +1,15 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState } from 'react'
 
-import FavIcon from './FavIcon';
-import '../styles/PhotoFavButton.scss';
+import FavIcon from './FavIcon'
+import '../styles/PhotoFavButton.scss'
+import { useFavContext } from './FavContext'
 
 function PhotoFavButton(props) {
-  const [isFavorited, setIsFavorited] = useState(false)
+  const { favorites, handleFav } = useFavContext()
+  let isFavorited = favorites.includes(props.photoId) ? true : false
 
   const handleIconClick = () => {
-    setIsFavorited(prevIsFavorited => !prevIsFavorited)
-    props.handleFav(props.photoId)
+    handleFav(props.photoId)
   }
 
   return (
