@@ -3,8 +3,12 @@ import React, { useEffect } from 'react'
 import '../styles/PhotoDetailsModal.scss'
 import closeSymbol from '../assets/closeSymbol.svg'
 import PhotoList from 'components/PhotoList'
+import PhotoFavButton from 'components/PhotoFavButton'
+import { useFavContext } from 'components/FavContext'
 
 const PhotoDetailsModal = (props) => {
+  const { handleFav } = useFavContext()
+
   useEffect(() => {
     props.singlePhotoDetail && console.log('Single Photo Detail: ', props.singlePhotoDetail)
   }, [props.singlePhotoDetail])
@@ -18,6 +22,7 @@ const PhotoDetailsModal = (props) => {
         <img src={closeSymbol} alt="close symbol"/>
       </button>
       <div className="photo-details-modal__image">
+        <PhotoFavButton handleFav={handleFav} photoId={props.singlePhotoDetail.id}/>
         <img src={props.singlePhotoDetail.urls.full} alt="photo detail" />
         <div className="photo-details-modal__header">
           <div className="photo-list__user-info">
