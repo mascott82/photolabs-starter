@@ -1,29 +1,46 @@
-import { useState } from 'react'
+import { useReducer } from 'react'
+
+const initialState = {
+  photos: [],
+}
+
+const ADD_FAVORITE = 'ADD_FAVORITE'
+const REMOVE_FAVORITE = 'REMOVE_FAVORITE'
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case ADD_FAVORITE:
+      return {
+        ...state,
+        photos: state.photos.map(photo => 
+          photo.id === action.payload ? { ...photo, favorite: true } : photo),
+      }
+    case REMOVE_FAVORITE:
+      return {
+        ...state,
+        photos: state.photos.map(photo => 
+          photo.id === action.payload ? { ...photo, favorite: false } : photo),
+      }
+    default:
+      return state
+  }
+}
 
 const useApplicationData = () => {
-  const [state, setState] = useState({
-    favPhotoIds: [],
-    selectedPhoto:  null,
-    isPhotoDetailsModalOpen:  false,
-  })
+  const [state, dispatch] = useReducer(reducer, initialState)
 
-  const updateToFavPhotoIds = (newFavPhotoIds) => {
-    setState((prev) => ({...prev, favPhotoIds: newFavPhotoIds}))
+  const addFavorite = (photoId) => {
+    dispatch({ type: ADD_FAVORITE, payload: photoId })
   }
 
-  const setPhotoSelected = (photo) => {
-    setState((prev) => ({ ...prev, selectedPhoto: photo }))
-  }
-
-  const onClosePhotoDetailsModal = () => {
-    setState((prev) => ({ ...prev, isPhotoDetailsModalOpen: false }))
+  const removeFavorite = (photoId) => {
+    dispatch({type: REMOVE_FAVORITE, payload: photoId })
   }
 
   return {
     state,
-    updateToFavPhotoIds,
-    setPhotoSelected,
-    onClosePhotoDetailsModal,
+    addFavorite,
+    removeFavorite,
   }
 }
 

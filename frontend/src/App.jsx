@@ -6,6 +6,7 @@ import topics from 'mocks/topics';
 import photos from 'mocks/photos';
 import { FavProvider } from 'components/FavContext';
 import PhotoDetailsModal from 'routes/PhotoDetailsModal';
+import useApplicationData from 'hooks/useApplicationData';
 
 // Note: Rendering a single component to build components in isolation
 const App = () => {
