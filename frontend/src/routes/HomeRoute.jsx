@@ -5,10 +5,14 @@ import TopNavigation from 'components/TopNavigationBar';
 import PhotoList from 'components/PhotoList';
 
 const HomeRoute = (props) => {
+  const globalState = {
+    favorites: [],
+  }
+  
   return (
     <div className="home-route">
       <TopNavigation topics={props.topics}/>
-      <PhotoList photos={props.photos}/>
+      <PhotoList photos={props.photos} handleFav={globalState}/>
     </div>
   );
 };
