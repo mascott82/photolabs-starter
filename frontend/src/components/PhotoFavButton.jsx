@@ -7,7 +7,7 @@ function PhotoFavButton() {
   const [isFavorited, setIsFavorited] = useState(false)
 
   const handleIconClick = () => {
-    setIsFavorited(isFavorited ? false : true)
+    setIsFavorited(prevIsFavorited => !prevIsFavorited)
   }
 
   return (
