@@ -14,13 +14,11 @@ const sampleDataForPhotoListItem = {
   profile: `${process.env.PUBLIC_URL}/profile-1.jpg`,
 };
 
-const {id, city, country, imageSource, username, profile} = sampleDataForPhotoListItem
-
 // Note: Rendering a single component to build components in isolation
 const App = () => {
   return (
     <div className="App">
-      <PhotoListItem id={id} city={city} country={country} imageSource={imageSource} username={username} profile={profile}/>
+      <PhotoListItem photo={sampleDataForPhotoListItem}/>
     </div>
   );
 };
