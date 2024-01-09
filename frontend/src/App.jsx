@@ -11,6 +11,15 @@ import PhotoDetailsModal from 'routes/PhotoDetailsModal';
 const App = () => {
   const [displayModal, setDisplayModal] = useState(false)
   const [singlePhotoDetail, setSinglePhotoDetail] = useState(null)
+  const [favorites, setFavorites] = useState([])
+
+  const {
+    state,
+    onPhotoSelect,
+    updateToFavPhotoIds,
+    onLoadTopic,
+    onClosePhotoDetailsModal,
+  } = useApplicationData();
 
   const openModal = (photo) => {
     setSinglePhotoDetail(photo)
@@ -19,13 +28,22 @@ const App = () => {
   return (
     <div className="App">
       <FavProvider>
-        <HomeRoute topics={topics} photos={photos} setDisplayModal={setDisplayModal} openModal={openModal} />
+        <HomeRoute 
+          topics={topics} 
+          photos={photos} 
+          setDisplayModal={setDisplayModal} 
+          openModal={openModal} 
+          favorites={favorites}
+          setFavorites={setFavorites}
+        />
         {displayModal && (
           <PhotoDetailsModal 
             setDisplayModal={setDisplayModal} 
             displayModal={displayModal}
             singlePhotoDetail={singlePhotoDetail}
-            />
+            favorites={favorites}
+            setFavorites={setFavorites}
+          />
         )}
       </FavProvider>
     </div>
