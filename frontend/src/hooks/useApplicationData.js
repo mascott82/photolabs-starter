@@ -2,6 +2,7 @@ import { useReducer } from 'react'
 
 const initialState = {
   photos: [],
+  displayModal: false,
 }
 
 export const ACTIONS = {
@@ -10,7 +11,9 @@ export const ACTIONS = {
   SET_PHOTO_DATA: 'SET_PHOTO_DATA',
   SET_TOPIC_DATA: 'SET_TOPIC_DATA',
   SELECT_PHOTO: 'SELECT_PHOTO',
-  DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS'
+  DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
+  SHOW_MODAL: 'SHOW_MODAL',
+  HIDE_MODAL: 'HIDE_MODAL',
 }
 
 const reducer = (state, action) => {
@@ -37,6 +40,16 @@ const reducer = (state, action) => {
         ...state,
         photos: action.payload,
       }
+    case ACTIONS.SHOW_MODAL:
+      return {
+        ...state,
+        displayModal: true,
+      }
+    case ACTIONS.HIDE_MODAL:
+      return {
+        ...state,
+        displayModal: false,
+      }
     default:
       return state
   }
@@ -61,12 +74,22 @@ const useApplicationData = () => {
     dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: newPhotoData })
   }
 
+  const showModal = () => {
+    dispatch({ type: ACTIONS.SHOW_MODAL })
+  }
+
+  const hideModal = () => {
+    dispatch({ type: ACTIONS.HIDE_MODAL })
+  }
+
   return {
     state,
     addFavorite,
     removeFavorite,
     selectedPhoto,
-    setPhotoDate
+    setPhotoDate,
+    showModal,
+    hideModal,
   }
 }
 
