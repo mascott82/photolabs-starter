@@ -1,8 +1,10 @@
-import { useReducer } from 'react'
+import { useReducer, useEffect } from 'react'
 
 const initialState = {
   photos: [],
   displayModal: false,
+  photoData: [],
+  topicData: []
 }
 
 export const ACTIONS = {
@@ -38,7 +40,7 @@ const reducer = (state, action) => {
     case ACTIONS.SET_PHOTO_DATA:
       return {
         ...state,
-        photos: action.payload,
+        photoData: action.payload,
       }
     case ACTIONS.SHOW_MODAL:
       return {
@@ -57,6 +59,12 @@ const reducer = (state, action) => {
 
 const useApplicationData = () => {
   const [state, dispatch] = useReducer(reducer, initialState)
+
+  useEffect(() => {
+    fetch('http://localhost:8001/api/photos')
+      .then(res => res.json())
+      .then(data => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }))
+  }, [])
 
   const addFavorite = (photoId) => {
     dispatch({ type: ACTIONS.FAV_PHOTO_ADDED, payload: photoId })

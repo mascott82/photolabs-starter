@@ -31,7 +31,7 @@ const App = () => {
       <FavProvider>
         <HomeRoute 
           topics={topics} 
-          photos={photos} 
+          photos={state.photoData} 
           setDisplayModal={setDisplayModal} 
           openModal={openModal} 
           favorites={favorites}
