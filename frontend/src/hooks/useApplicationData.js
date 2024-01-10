@@ -77,6 +77,16 @@ const useApplicationData = () => {
       .then(data => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data }))
   }, [])
 
+  const fetchPhotosByTopic = (topicId) => {
+    fetch(`http://localhost:8001/api/topics/photos/${topicId}`)
+      .then(res => res.json())
+      .then(data => {
+        dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data })
+      })
+      .catch(error => {
+        console.error('Error fetching photos by topic: ', error)
+      });
+  }
 
   const addFavorite = (photoId) => {
     dispatch({ type: ACTIONS.FAV_PHOTO_ADDED, payload: photoId })
@@ -115,6 +125,7 @@ const useApplicationData = () => {
     setTopicData,
     showModal,
     hideModal,
+    fetchPhotosByTopic,
   }
 }
 
