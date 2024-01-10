@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 
 import './App.scss';
 import HomeRoute from 'routes/HomeRoute';
-import topics from 'mocks/topics';
-import photos from 'mocks/photos';
 import { FavProvider } from 'components/FavContext';
 import PhotoDetailsModal from 'routes/PhotoDetailsModal';
 import useApplicationData from 'hooks/useApplicationData';
@@ -30,7 +28,7 @@ const App = () => {
     <div className="App">
       <FavProvider>
         <HomeRoute 
-          topics={topics} 
+          topics={state.topicData} 
           photos={state.photoData} 
           setDisplayModal={setDisplayModal} 
           openModal={openModal} 

@@ -42,6 +42,11 @@ const reducer = (state, action) => {
         ...state,
         photoData: action.payload,
       }
+    case ACTIONS.SET_TOPIC_DATA:
+      return {
+        ...state,
+        topicData: action.payload,
+      }
     case ACTIONS.SHOW_MODAL:
       return {
         ...state,
@@ -66,6 +71,13 @@ const useApplicationData = () => {
       .then(data => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }))
   }, [])
 
+  useEffect(() => {
+    fetch('http://localhost:8001/api/topics')
+      .then(res => res.json())
+      .then(data => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data }))
+  }, [])
+
+
   const addFavorite = (photoId) => {
     dispatch({ type: ACTIONS.FAV_PHOTO_ADDED, payload: photoId })
   }
@@ -78,8 +90,12 @@ const useApplicationData = () => {
     dispatch({ type: ACTIONS.SELECT_PHOTO, payload: photoId })
   }
 
-  const setPhotoDate = (newPhotoData) => {
+  const setPhotoData = (newPhotoData) => {
     dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: newPhotoData })
+  }
+
+  const setTopicData = (newTopicData) => {
+    dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: newTopicData })
   }
 
   const showModal = () => {
@@ -95,7 +111,8 @@ const useApplicationData = () => {
     addFavorite,
     removeFavorite,
     selectedPhoto,
-    setPhotoDate,
+    setPhotoData,
+    setTopicData,
     showModal,
     hideModal,
   }
